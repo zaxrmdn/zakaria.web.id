@@ -1,33 +1,60 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
-  background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+  font-family: 'Segoe UI', sans-serif;
+  background: #f7f9fc;
   color: #333;
-  animation: fadeIn 1s ease-in;
+  overflow-x: hidden;
 }
 
-header, section, footer {
-  text-align: center;
+.hero {
+  height: 100vh;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  animation: slideUp 1.5s ease-in;
+}
+
+.profile .card {
+  margin: 2rem auto;
   padding: 2rem;
+  max-width: 400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
 }
 
-img {
-  width: 150px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.card:hover {
+  transform: scale(1.05);
 }
 
-/* Animations */
-.animated {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideUp 1s forwards;
+.blog {
+  padding: 2rem;
+  background: #eef2f7;
+}
+
+.blog a {
+  display: block;
+  margin: 0.5rem 0;
+  color: #1e3c72;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

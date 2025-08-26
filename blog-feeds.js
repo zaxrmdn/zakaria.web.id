@@ -1,14 +1,26 @@
-const blogLinks = [
-  { title: "How to Build a Windows Server Lab", url: "https://yourblog.com/windows-lab" },
-  { title: "Designing IT Curriculum for Real Impact", url: "https://yourblog.com/it-curriculum" },
-];
+const blogContainer = document.getElementById("blog-feed");
 
-const container = document.getElementById("blog-links");
-blogLinks.forEach(link => {
-  const a = document.createElement("a");
-  a.href = link.url;
-  a.textContent = link.title;
-  a.target = "_blank";
-  a.className = "blog-link";
-  container.appendChild(a);
-});
+fetch("https://yourblog.com/api/posts")
+  .then(res => res.json())
+  .then(data => {
+    data.slice(0, 5).forEach(post => {
+      const link = document.createElement("a");
+      link.href = post.url;
+      link.textContent = post.title;
+      link.target = "_blank";
+      blogContainer.appendChild(link);
+    });
+  })
+  .catch(() => {
+    fetch("fallback/blog.json")
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(post => {
+          const link = document.createElement("a");
+          link.href = post.url;
+          link.textContent = post.title + " (cached)";
+          link.target = "_blank";
+          blogContainer.appendChild(link);
+        });
+      });
+  });
